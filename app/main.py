@@ -44,10 +44,10 @@ class Distance:
         return lt
 
     def __le__(self, other: Distance | float | int) -> bool:
-        if isinstance(other, Distance):
-            le = self.km <= other.km
-        else:
+        if not isinstance(other, Distance):
             le = self.km <= other
+            return le
+        le = self.km <= other.km
         return le
 
     def __eq__(self, other: Distance | float | int) -> bool:
@@ -68,5 +68,5 @@ class Distance:
         if not isinstance(other, Distance):
             gt = self.km > other
             return gt
-        gt = self.km > other
+        gt = self.km > other.km
         return gt
